@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Chương trình khởi tạo/nhập vào một mảng số nguyên gồm 10 phần tử, nhập/tạo phần tử số nguyên V. Chương trình kiểm tra xem V có thuộc mảng đã cho không, nếu V thuộc mảng đã cho xoá V khỏi mảng (Bản chất việc xoá ở đây tức là dịch phần tử ở bên phải V sang vị trí của V, và gán 0 cho phần tử cuối cùng của mảng)</title>
+</head>
+<body onload="createArr()">
+	<p>Bài 7- Viết chương trình khởi tạo/nhập vào một mảng số nguyên gồm 10 phần tử, nhập/tạo phần tử số nguyên V. Chương trình kiểm tra xem V có thuộc mảng đã cho không, nếu V thuộc mảng đã cho xoá V khỏi mảng (Bản chất việc xoá ở đây tức là dịch phần tử ở bên phải V sang vị trí của V, và gán 0 cho phần tử cuối cùng của mảng)</p>
+	<p id="content"></p>
+	<button onclick="checkV()">Tìm và xóa số trong mảng.</button>
+	<script type="text/javascript">
+		let content = document.querySelector('#content');
+		let arr     = [];
+		function updateC(){
+			content.innerText = JSON.stringify(arr);
+		}
+		function createArr() {
+			for (let i = 0; i < 10; i++) {
+				arr[i] = ((Math.random()*1000)+1)>>0;
+			}
+			updateC();
+		}
+		function checkV() {
+			let enter = prompt('Nhập vào số cần tìm và xóa.');
+			let index = -1;
+			for (let i = 0; i < arr.length; i++) {
+				let data = arr[i];
+				if (index !== -1) {
+					arr[i-1] = data;
+					if (i === arr.length-1) {
+						arr[i] = 0;
+					}
+				}else{
+					if (data == enter) {
+						index = i;
+					}
+				}
+			}
+			if (index === -1) {
+				alert('Không tìm thấy.');
+			}else{
+				updateC();
+			}
+		}
+	</script>
+</body>
+</html>
